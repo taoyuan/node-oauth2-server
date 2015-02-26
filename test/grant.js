@@ -73,7 +73,7 @@ describe('Grant', function() {
       request(app)
         .post('/oauth/token')
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .expect(400, /invalid or missing grant_type parameter/i, done);
+        .expect(400, /missing grant_type parameter/i, done);
     });
 
     it('should ensure grant_type is allowed', function (done) {
@@ -83,7 +83,7 @@ describe('Grant', function() {
         .post('/oauth/token')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send({ grant_type: 'password' })
-        .expect(400, /invalid or missing grant_type parameter/i, done);
+        .expect(400, /invalid grant_type parameter/i, done);
     });
 
     it('should check client_id exists', function (done) {
@@ -175,7 +175,7 @@ describe('Grant', function() {
         .post('/oauth/token')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send({ grant_type: 'password', client_id: 'thom', client_secret: 'nightworld' })
-        .expect(400, /invalid or missing grant_type/i, done);
+        .expect(400, /invalid grant_type parameter/i, done);
     });
   });
 
